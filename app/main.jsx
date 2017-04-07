@@ -1,14 +1,14 @@
-'use strict'
-import React from 'react'
-import {render} from 'react-dom'
-import { Provider } from 'react-redux'
+'use strict';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
+import Routes from './routes';
+import store from './store';
 
-import store from './store'
-import Root from './components/Root'
-
-render (
+ReactDOM.render(
   <Provider store={store}>
-    <Root/>
+    <Routes />
   </Provider>,
   document.getElementById('main')
-)
+);
+
