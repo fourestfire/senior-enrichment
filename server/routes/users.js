@@ -6,6 +6,8 @@ module.exports = router;
 
 const User = require('../../db/models/user');
 
+// we are currently at /api/users/
+
 router.param('studentId', function(req, res, next, id) {
   User.findById(id)
   .then(student => {

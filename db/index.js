@@ -17,11 +17,35 @@ const db = module.exports = new Sequelize(connectionString, {
 
 // run our models file (makes all associations for our Sequelize objects)
 require('./models')
+var User = require('./models/user');
+var Campus = require('./models/campus');
 
 // sync the db, creating it if necessary
 function sync(force=true, retries=0, maxRetries=5) {
   return db.sync({force})
   .then(ok => console.log(`Synced models to db ${connectionString}`))
+  .then(() => {
+      Campus.create({
+          name: 'Moonglow',
+        })
+      .then((campus) => {
+        User.bulkCreate([
+          { name: 'Zeke Nierenberg', email: 'zeke@zeke.zeke', campusId: campus.get('id')},
+          { name: 'Omri Bernstein', email: 'omri@zeke.zeke', campusId: campus.get('id')}
+        ]);
+      })
+      .then(() => {
+        Campus.create({
+          name: 'Starlight',
+        })
+      .then((campus) => {
+        User.bulkCreate([
+          { name: 'Luke Skywalker', email: 'luke@zeke.zeke', campusId: campus.get('id')},
+          { name: 'Obi Wan Kenobi', email: 'obi@zeke.zeke', campusId: campus.get('id')},
+        ]);
+      });
+    });
+  })
   .catch(fail => {
     // Don't do this auto-create nonsense in prod, or
     // if we've retried too many times.

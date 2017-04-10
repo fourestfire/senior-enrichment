@@ -6,8 +6,10 @@ module.exports = router;
 
 const Campus = require('../../db/models/campus');
 
+// we are currently at /api/campuses/
+
 router.param('campusId', function(req, res, next, id) {
-  User.findById(id)
+  Campus.findById(id)
   .then(campus => {
     if (!campus) res.sendStatus(404);
     else {
@@ -19,13 +21,13 @@ router.param('campusId', function(req, res, next, id) {
 });
 
 router.get('/', function(req, res, next) {
-  User.findAll()
+  Campus.findAll()
   .then(data => res.json(data))
   .catch(next);
 });
 
 router.post('/', function(req, res, next) {
-  User.create(req.body)
+  Campus.create(req.body)
   .then(data => res.json(data))
   .catch(next);
 });
