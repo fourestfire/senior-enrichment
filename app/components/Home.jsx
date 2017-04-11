@@ -29,7 +29,7 @@ class Home extends React.Component {
 /* -------------------<   CONTAINER   >-------------------- */
 
 import { connect } from 'react-redux';
-import { receiveCampuses } from '../reducers/campus'; // not having this in brackets is a horrible idea
+import { receiveCampuses } from '../reducers/campus'; // not having this in brackets cost me a good number of hours
 
 const mapState = ({ campuses }) => ({ campuses });
 const mapDispatch = ({ receiveCampuses });

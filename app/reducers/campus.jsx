@@ -29,6 +29,3 @@ export const receiveCampuses = () => dispatch => {
   .then(campuses => dispatch(receiveCampusesSync(campuses)))
   .catch(err => console.error('dang, we hit an error!', err));
 };
-
-
-  // .then(data => console.log(data))

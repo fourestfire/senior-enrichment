@@ -44,7 +44,6 @@ export const addStudent = (obj) => dispatch => {
   })
   .catch(err => console.error('dang, we hit an error!', err));
 };
-// .then(data => console.log(data))
 
 export const receiveStudents = () => dispatch => {
   axios.get('/api/users/')
