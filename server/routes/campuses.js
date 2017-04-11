@@ -4,6 +4,7 @@
 const router = require('express').Router();
 module.exports = router;
 
+const Student = require('../../db/models/user');
 const Campus = require('../../db/models/campus');
 
 // we are currently at /api/campuses/
@@ -32,8 +33,17 @@ router.post('/', function(req, res, next) {
   .catch(next);
 });
 
+// modified the route here to better serve the front end functionality - instead of sending back the campus, we want to send back the students for that campusId
+// router.get('/:campusId', function(req, res, next) {
+//   res.send(req.campus);
+// });
 router.get('/:campusId', function(req, res, next) {
-  res.send(req.campus);
+  Student.findAll({
+    where: { campusId: req.params.campusId },
+    include: [{model: Campus}]
+  })
+  .then(data => res.json(data))
+  .catch(next);
 });
 
 router.delete('/:campusId', function(req, res, next) {

@@ -4,14 +4,19 @@ import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Students from './components/Students';
+import Campus from './components/Campus';
+import Navbar from './components/Navbar';
 
 const Routes = () => {
   return (
     <Router>
-      <div>
-        <Route exact path="/" component={Home}  />
-        <Route path="/students" component={Students} />
-        <Route path="*" component={Home} />
+      <div className="container flexbox-container">
+        <div className="jumbotron">
+          <Route path="*" component={Navbar} />
+          <Route exact path="/" component={Home}  />
+          <Route path="/students" component={Students} />
+          <Route path="/campuses/:campusId" component={Campus} />
+        </div>
       </div>
     </Router>
   );

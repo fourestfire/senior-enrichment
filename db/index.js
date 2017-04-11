@@ -21,6 +21,7 @@ var User = require('./models/user');
 var Campus = require('./models/campus');
 
 // sync the db, creating it if necessary
+// added quick seeding
 function sync(force=true, retries=0, maxRetries=5) {
   return db.sync({force})
   .then(ok => console.log(`Synced models to db ${connectionString}`))

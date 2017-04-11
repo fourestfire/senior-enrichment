@@ -11,6 +11,7 @@ export const receiveCampusesSync = campuses => ({ type: RECEIVE_CAMPUSES, campus
 let initialState = { allCampuses: [] };
 
 export default function (state = initialState, action) {
+  console.log('action', action);
   switch (action.type) {
     case RECEIVE_CAMPUSES:
       return Object.assign({}, state, {allCampuses: action.campuses});
@@ -28,5 +29,6 @@ export const receiveCampuses = () => dispatch => {
   .then(campuses => dispatch(receiveCampusesSync(campuses)))
   .catch(err => console.error('dang, we hit an error!', err));
 };
-// .then(data => console.log(data))
 
+
+  // .then(data => console.log(data))
